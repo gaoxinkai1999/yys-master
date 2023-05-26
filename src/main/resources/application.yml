@@ -1,0 +1,8 @@
+game:
+  title: 阴阳师-网易游戏
+  path: C:\Users\g\Desktop\yys-1\
+#  title: 阴阳师 - MuMu模拟器
+#  path: C:\Users\g\Desktop\yys-2\
+  height: 640
+  width: 1136
+  license : 6428881518c263e745b0f01e374c8cdb9936a6
