@@ -40,8 +40,8 @@ class YysMasterApplicationTests {
 //        actions.add(点击挑战二);
 //        actions.add(结算步骤一);
 //        actions.add(结算步骤二);
-        tools.start();
-
+//        tools.start();
+        tools.startPlus();
         //左 6  122   200  400
         //右 951 123  170   320
 

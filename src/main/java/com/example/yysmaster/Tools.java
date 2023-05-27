@@ -19,76 +19,41 @@ public class Tools {
     DmSoft dmSoft;
 
 
-//    public void start() {
-//
-//        Action 点击挑战 = new Action("点击挑战", "tiaozhan.png", 972, 522, 80, 80);
-////        Action 结算步骤一 = new Action("结算", "5.png", 6, 122, 200, 400);
-//        Action 结算步骤二 = new Action("结算", "5.png", 951, 123, 170, 320);
-//        Action 魂 = new Action("魂", "hun.png", 951, 123, 170, 320);
-//
-//        int i = 0;
-//        while (true) {
-//            i += 1;
-//            System.out.println("**************");
-//            System.out.println("执行第" + i + "次");
-//
-//
-//            cv.WaitLive(点击挑战.path);
-//            坐标随机偏移(点击挑战);
-//            随机点击();
-//            while (true) {
-//                if (cv.WaitDie(点击挑战.path)) {
-//                    System.out.println(点击挑战.name + "----执行成功");
-//                    break;
-//                } else {
-//                    随机点击();
-//                    try {
-//                        Thread.sleep(200);
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                }
-//            }
-//
-//            cv.WaitLive(结算步骤二.path);
-//            坐标随机偏移(结算步骤二);
-//            随机点击();
-//            while (true) {
-//                if (cv.Temp_Match(魂.path)!=null) {
-//                    System.out.println(结算步骤二.name + "----执行成功");
-//                    dmSoft.CopyFile("jietu.png","result.png",0);
-//                    随机点击();
-//                    break;
-//                } else {
-//                    随机点击();
-//                }
-//            }
-//
-//        }
-//    }
-    public void start() {
+    public void startPlus() {
 
-        Action 点击挑战 = new Action("点击挑战", "tiaozhan.png", 972, 522, 80, 80);
+
+        ArrayList<掉落> 掉落s = new ArrayList<>();
+
+
+
+        Action 点击挑战 = new Action("点击挑战", dmSoft.GetPath()+ "tiaozhan.png", 972, 522, 80, 80);
 //        Action 结算步骤一 = new Action("结算", "5.png", 6, 122, 200, 400);
-        Action 结算步骤二 = new Action("结算", "5.png", 951, 123, 170, 320);
-        Action 魂 = new Action("魂", "hun.png", 951, 123, 170, 320);
+        Action 结算步骤二 = new Action("结算", dmSoft.GetPath()+ "5.png", 951, 123, 170, 320);
+        Action 掉落统计 = new Action("掉落统计", dmSoft.GetPath()+ "jinbi.png", 951, 123, 170, 320);
         ArrayList<Action> actions = new ArrayList<>();
 //        actions.add(点击挑战);
 //        actions.add(结算步骤一);
         actions.add(结算步骤二);
-        actions.add(魂);
+
         int i = 0;
-        while (true) {
+        int end=150;
+        while (i<end) {
             i += 1;
             System.out.println("**************");
             System.out.println("执行第" + i + "次");
 
             for (Action action : actions) {
-                cv.WaitLive(action.path);
+                cv.WaitLive(action.pic);
                 坐标随机偏移(action);
                 随机点击();
                 while (true) {
-                    if (cv.WaitDie(action.path)) {
+                    if (cv.Temp_Match(掉落统计.pic)!=null){
+                        dmSoft.CopyFile("jietu.png","result.png",0);
+                        System.out.println("检测到掉落");
+                        随机点击();
+                        break;
+                    }
+                    if (cv.WaitDie(action.pic)) {
                         System.out.println(action.name + "----执行成功");
                         break;
                     } else {
@@ -101,6 +66,47 @@ public class Tools {
                     }
                 }
             }
+
+
+        }
+    }
+    public void start() {
+
+        Action 点击挑战 = new Action("点击挑战", dmSoft.GetPath()+ "tiaozhan.png", 972, 522, 80, 80);
+//        Action 结算步骤一 = new Action("结算", "5.png", 6, 122, 200, 400);
+        Action 结算步骤二 = new Action("结算", dmSoft.GetPath()+ "5.png", 951, 123, 170, 320);
+//        Action 魂 = new Action("魂", "hun.png", 951, 123, 170, 320);
+        ArrayList<Action> actions = new ArrayList<>();
+//        actions.add(点击挑战);
+//        actions.add(结算步骤一);
+        actions.add(结算步骤二);
+
+        int i = 0;
+        int end=150;
+        while (i<end) {
+            i += 1;
+            System.out.println("**************");
+            System.out.println("执行第" + i + "次");
+
+            for (Action action : actions) {
+                cv.WaitLive(action.pic);
+                坐标随机偏移(action);
+                随机点击();
+                while (true) {
+                    if (cv.WaitDie(action.pic)) {
+                        System.out.println(action.name + "----执行成功");
+                        break;
+                    } else {
+                        随机点击();
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+
 
         }
     }

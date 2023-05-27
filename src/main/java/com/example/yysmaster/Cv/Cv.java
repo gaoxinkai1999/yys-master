@@ -31,12 +31,12 @@ public class Cv {
         new Cv().demo();
     }
 
-    public java.awt.Point Temp_Match(String temp) {
+    public java.awt.Point Temp_Match(Mat template) {
 //        Mat src = Imgcodecs.imread("src/main/resources/pic/111.png");//待匹配图片
 //        Mat template = Imgcodecs.imread("src/main/resources/pic/" + temp);// 获取匹配模板
 //        String property = System.getProperty("user.dir");
         Mat src = Imgcodecs.imread(dmSoft.getConfig().getPath() + "jietu.png");//待匹配图片
-        Mat template = Imgcodecs.imread(dmSoft.getConfig().getPath() + temp);// 获取匹配模板
+//        Mat template = Imgcodecs.imread(dmSoft.getConfig().getPath() + temp);// 获取匹配模板
 
         /*
           TM_SQDIFF = 0, 平方差匹配法，最好的匹配为0，值越大匹配越差
@@ -83,7 +83,6 @@ public class Cv {
         int center_y = (int) (y + template.rows() * 0.5);
 
         src.release();
-        template.release();
         result.release();
         if (good_score < 0.8) {
             return null;
@@ -207,7 +206,7 @@ public class Cv {
     }
 
 
-    public java.awt.Point WaitLive(String temp) {
+    public java.awt.Point WaitLive(Mat temp) {
         while (true) {
             dmSoft.CapturePng(0, 0, dmSoft.getConfig().getWidth(), dmSoft.getConfig().getHeight(), dmSoft.getConfig().getPath() + "jietu.png");
             java.awt.Point point = Temp_Match(temp);
@@ -229,7 +228,7 @@ public class Cv {
      * @param temp
      * @return
      */
-    public boolean WaitDie(String temp) {
+    public boolean WaitDie(Mat temp) {
 
         dmSoft.CapturePng(0, 0, dmSoft.getConfig().getWidth(), dmSoft.getConfig().getHeight(), dmSoft.getConfig().getPath() + "jietu.png");
         java.awt.Point point = Temp_Match(temp);
