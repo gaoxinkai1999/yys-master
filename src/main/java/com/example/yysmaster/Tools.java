@@ -36,7 +36,7 @@ public class Tools {
         actions.add(结算步骤二);
 
         int i = 0;
-        int end=150;
+        int end=50;
         while (i<end) {
             i += 1;
             System.out.println("**************");
@@ -70,19 +70,11 @@ public class Tools {
 
         }
     }
-    public void start() {
+    public void start(ArrayList<Action> actions) {
 
-        Action 点击挑战 = new Action("点击挑战", dmSoft.GetPath()+ "tiaozhan.png", 972, 522, 80, 80);
-//        Action 结算步骤一 = new Action("结算", "5.png", 6, 122, 200, 400);
-        Action 结算步骤二 = new Action("结算", dmSoft.GetPath()+ "5.png", 951, 123, 170, 320);
-//        Action 魂 = new Action("魂", "hun.png", 951, 123, 170, 320);
-        ArrayList<Action> actions = new ArrayList<>();
-//        actions.add(点击挑战);
-//        actions.add(结算步骤一);
-        actions.add(结算步骤二);
 
         int i = 0;
-        int end=150;
+        int end=120;
         while (i<end) {
             i += 1;
             System.out.println("**************");

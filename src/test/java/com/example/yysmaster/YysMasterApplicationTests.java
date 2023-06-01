@@ -5,6 +5,7 @@ import com.example.yysmaster.Dm.DmConfig;
 import com.example.yysmaster.Dm.DmSoft;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SuppressWarnings("all")
 class YysMasterApplicationTests {
     @Autowired
     DmConfig config;
@@ -26,27 +28,29 @@ class YysMasterApplicationTests {
     Cv cv;
     @Autowired
     Tools tools;
+    @Value("${副本}")
+    String 副本选择;
+    @Autowired
+    副本 副本;
 
     @Test
     void contextLoads() {
 
-//        Action 点击挑战 = new Action("点击挑战", "tiaozhan.png", 972, 522, 80, 80);
-//        Action 点击挑战二 = new Action("点击挑战", "tiaozhan-2.png", 1059, 548, 45, 45);
-//        Action 结算步骤一 = new Action("结算", "5.png", 6, 122, 200, 400);
-//        Action 结算步骤二 = new Action("结算", "5.png", 951, 123, 170, 320);
-//
-//        ArrayList<Action> actions = new ArrayList<>();
-//        actions.add(点击挑战);
-//        actions.add(点击挑战二);
-//        actions.add(结算步骤一);
-//        actions.add(结算步骤二);
-//        tools.start();
-        tools.startPlus();
-        //左 6  122   200  400
-        //右 951 123  170   320
-
-        //突破 14  体力145235
-
+        System.out.println(副本选择);
+        switch (副本选择) {
+            case "魂土司机":
+                tools.start(副本.魂土司机());
+                break;
+            case "魂土打手":
+                tools.start(副本.魂土打手());
+                break;
+            case "单人副本":
+                tools.start(副本.单人副本());
+                break;
+            case "活动":
+                tools.start(副本.活动());
+                break;
+        }
 
     }
 
